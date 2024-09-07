@@ -9,7 +9,7 @@ import org.bson.types.ObjectId;
  *
  * @author Matheus
  */
-public class Delete {
+public class DeleteCliente {
     
      public static void main(String[] args) {
         
@@ -18,7 +18,7 @@ public class Delete {
         
         colecao.deleteOne(
                 Filters.eq("_id", 
-                        new ObjectId("66dbae2130025f36120506e2")));
+                        new ObjectId("66dbbe4ddc68ba0595905418"))); // MUDAR O ID
         System.out.println("Cliente excluído com sucesso"); 
             
     }

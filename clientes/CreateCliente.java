@@ -9,7 +9,7 @@ import org.bson.Document;
  *
  * @author Matheus
  */
-public class Create {
+public class CreateCliente {
     
     public static void main(String[] args) {
         

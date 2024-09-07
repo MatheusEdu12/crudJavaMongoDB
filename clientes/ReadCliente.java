@@ -9,7 +9,7 @@ import org.bson.Document;
  *
  * @author Matheus
  */
-public class Read {
+public class ReadCliente {
     
     public static void main(String[] args) {
         
@@ -23,10 +23,10 @@ public class Read {
             while (cursor.hasNext()) {
                 Document cliente = (Document)cursor.next();
                 System.out.println("--------- Detalhes --------");
-                System.out.println(cliente.get("_id"));
-                System.out.println(cliente.get("nome"));
-                System.out.println(cliente.get("cpf"));
-                System.out.println(cliente.get("numero"));                
+                System.out.println("id: " + cliente.get("_id"));
+                System.out.println("nome: " + cliente.get("nome"));
+                System.out.println("cpf: " + cliente.get("cpf"));
+                System.out.println("numero: " + cliente.get("numero"));                
             }
 
         } catch (Exception e){

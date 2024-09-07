@@ -10,7 +10,7 @@ import org.bson.types.ObjectId;
  *
  * @author Matheus
  */
-public class Update {
+public class UpdateCliente {
     
     public static void main(String[] args) {
         
@@ -20,7 +20,7 @@ public class Update {
         try{
             Document cliente = (Document) colecao.find(
                 Filters.eq("_id", 
-                        new ObjectId("66dbae2130025f36120506e2"))).first();
+                        new ObjectId("66dbbe4ddc68ba0595905418"))).first(); // MUDAR O ID
             
             colecao.updateOne(cliente,
                     new Document("$set", new Document("nome", "Matheus Eduardo Laurindo do Rego")                            
