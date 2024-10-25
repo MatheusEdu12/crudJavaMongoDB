@@ -14,7 +14,7 @@ public class CreateCliente {
     public static void main(String[] args) {
         
         Conexao conexao = new Conexao();        
-        MongoCollection colecao = conexao.getBanco().getCollection("clientes");
+        MongoCollection<Document> colecao = conexao.getBanco().getCollection("clientes");
 
         Document c1 = new Document();
         Document c2 = new Document();

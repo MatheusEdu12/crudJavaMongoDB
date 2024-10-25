@@ -4,6 +4,7 @@ import com.matheuseduardo.oficina.Conexao;
 import com.mongodb.MongoWriteException;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -14,7 +15,7 @@ import java.util.Date;
  */
 public class CreateVenda {
     
-    public static void main(String[] args) {
+public static void main(String[] args) {
         
         Conexao conexao = new Conexao();        
         MongoCollection<Document> colecao = conexao.getBanco().getCollection("vendas");
@@ -24,27 +25,55 @@ public class CreateVenda {
         Document venda3 = new Document();
 
         venda1
-            .append("dataVenda", new Date()) 
+            .append("data", new Date()) 
             .append("cliente", new Document()
-                .append("clienteNome", "Matheus Eduardo")
-            ).append("formaPagamento", "cartão");
+                .append("id", new ObjectId("671aecc3ea412d7214723b5b"))
+                .append("nome", "Matheus Eduardo")
+            )
+            .append("produto", new Document()
+                .append("id", new ObjectId("671aefbae0cd3853f9fde984"))
+                .append("nome", "Óleo")
+            )
+            .append("funcionario", new Document()
+                .append("id", new ObjectId("671aed03d4285a0c801c3fdf"))
+                .append("nome", "Fernando Souza")
+                
+            );
         
         venda2
-            .append("dataVenda", new Date()) 
-            .append("cliente", new Document()
-                .append("clienteNome", "Luccas Eduardo")
-            ).append("formaPagamento", "dinheiro");
-        
-        venda3
-            .append("dataVenda", new Date())  
-            .append("cliente", new Document()
-                .append("clienteNome", "Eduardo Wanderley")
-            ).append("formaPagamento", "transferência");
-        
-        try {
-            colecao.insertOne(venda1);            
-            colecao.insertOne(venda2);            
-            colecao.insertOne(venda3);            
+	        .append("data", new Date()) 
+	        .append("cliente", new Document()
+	            .append("id", new ObjectId("671aecc3ea412d7214723b5c"))
+	            .append("nome", "Luccas Eduardo")
+	        )
+	        .append("produto", new Document()
+	            .append("id", new ObjectId("671aefbae0cd3853f9fde985")) 
+	            .append("nome", "Filtro de Ar")
+	        )
+	        .append("funcionario", new Document()
+	            .append("id", new ObjectId("671aed12bdc5b717ec10b5df")) 
+	            .append("nome", "Carlos Alberto")
+	        );
+
+	    venda3
+	        .append("data", new Date()) 
+	        .append("cliente", new Document()
+	            .append("id", new ObjectId("671aecc3ea412d7214723b5d")) 
+	            .append("nome", "Eduardo Wanderley")
+	        )
+	        .append("produto", new Document()
+	            .append("id", new ObjectId("671aefbae0cd3853f9fde986")) 
+	            .append("nome", "Bateria")
+	        )
+	        .append("funcionario", new Document()
+	            .append("id", new ObjectId("671aed12bdc5b717ec10b5de"))
+	            .append("nome", "Ana Beatriz")
+	        );
+
+    try {
+        colecao.insertOne(venda1);            
+        colecao.insertOne(venda2);            
+        colecao.insertOne(venda3);           
             System.out.println("Vendas inseridas com sucesso!");
         } catch (MongoWriteException e) {
             e.printStackTrace();

@@ -3,6 +3,8 @@ package com.matheuseduardo.oficina.vendas;
 import com.matheuseduardo.oficina.Conexao;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
+
+import org.bson.Document;
 import org.bson.types.ObjectId;
 
 /**
@@ -14,7 +16,7 @@ public class DeleteVenda {
     public static void main(String[] args) {
         
         Conexao conexao = new Conexao();
-        MongoCollection colecao = conexao.getBanco().getCollection("vendas");
+        MongoCollection<Document> colecao = conexao.getBanco().getCollection("vendas");
         
         colecao.deleteOne(
                 Filters.eq("_id", 

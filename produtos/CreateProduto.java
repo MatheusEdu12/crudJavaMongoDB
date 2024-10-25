@@ -4,6 +4,7 @@ import com.matheuseduardo.oficina.Conexao;
 import com.mongodb.MongoWriteException;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 
 /**
@@ -12,7 +13,7 @@ import org.bson.Document;
  */
 public class CreateProduto {
     
-    public static void main(String[] args) {
+public static void main(String[] args) {
         
         Conexao conexao = new Conexao();        
         MongoCollection<Document> colecao = conexao.getBanco().getCollection("produtos");
@@ -21,22 +22,36 @@ public class CreateProduto {
         Document produto2 = new Document();
         Document produto3 = new Document();
 
+        
         produto1
-            .append("produtoNome", "Óleo Lubrificante")
-            .append("descricao", "Óleo para motores de veículos");
-
+            .append("produtoNome", "Óleo")
+            .append("descricao", "Óleo para motores de veículos")
+            .append("fornecedor", new Document()
+                .append("id", new ObjectId("671aed03d4285a0c801c3fdf"))
+                .append("nome", "Carlos Pereira")
+            );
+        
+        
         produto2
-            .append("produtoNome", "Filtro de Óleo")
-            .append("descricao", "Filtro para remoção de impurezas do óleo do motor");
+        .append("produtoNome", "Filtro de Ar")
+        .append("descricao", "Filtro de ar para veículos")
+        .append("fornecedor", new Document()
+            .append("id", new ObjectId("671aed03d4285a0c801c3fde")) 
+            .append("nome", "Maria Oliveira")
+        );
 
-        produto3
-            .append("produtoNome", "Corrente de Bike")
-            .append("descricao", "Corrente para pneus de bicicleta");
+	    produto3
+	        .append("produtoNome", "Bateria")
+	        .append("descricao", "Bateria automotiva de 60Ah")
+	        .append("fornecedor", new Document()
+	            .append("id", new ObjectId("671aed03d4285a0c801c3fdd")) 
+	            .append("nome", "João Silva")
+	        );
 
-        try {
-            colecao.insertOne(produto1);            
-            colecao.insertOne(produto2);            
-            colecao.insertOne(produto3);            
+	    try {
+	        colecao.insertOne(produto1);            
+	        colecao.insertOne(produto2);            
+	        colecao.insertOne(produto3);            
             System.out.println("Produtos inseridos com sucesso!");
         } catch (MongoWriteException e) {
             e.printStackTrace();

@@ -15,7 +15,7 @@ public class UpdateCliente {
     public static void main(String[] args) {
         
         Conexao conexao = new Conexao();
-        MongoCollection colecao = conexao.getBanco().getCollection("clientes");
+        MongoCollection<Document> colecao = conexao.getBanco().getCollection("clientes");
                        
         try{
             Document cliente = (Document) colecao.find(

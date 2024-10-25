@@ -14,7 +14,7 @@ public class ReadCliente {
     public static void main(String[] args) {
         
         Conexao conexao = new Conexao();
-        MongoCollection colecao = conexao.getBanco()
+        MongoCollection<Document> colecao = conexao.getBanco()
                 .getCollection("clientes");                
         
         MongoCursor cursor = colecao.find().iterator();
